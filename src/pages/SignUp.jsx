@@ -8,7 +8,7 @@ import { API_ENDPOINTS } from "../util/apiEndpoints";
 import toast from "react-hot-toast";
 import { LoaderCircle } from "lucide-react";
 import ProfilePhotoSelector from "../components/ProfilePhotoSelector";
-import uploadProfileImage from "../util/uploadProfileimage";
+import uploadProfileImage from "../util/uploadProfileImage";
 
 const SignUp = () => {
   // State management as shown in your code snippet
