@@ -16,7 +16,7 @@ const AddCategoryForm = ({onAddCategory,isEditing, initialCategoryData}) => {
         setCategory(initialCategoryData);
     }
     else {
-        setCategory({name:"",tpe:"income",icon:""})
+        setCategory({name:"",type:"income",icon:""})
     }
   },[isEditing,initialCategoryData])
 
@@ -39,46 +39,81 @@ const AddCategoryForm = ({onAddCategory,isEditing, initialCategoryData}) => {
     }
   }
 
-  return (
-    <div className="p-4">
-        <EmojiPickerPopup icon={category.icon} onSelect={(selectedIcon) => handleChange("icon",selectedIcon)} />
-        <Input
-            value={category.name}
-            onChange={({target}) => handleChange("name",target.value)}
-            label="Category Name"
-            placeholder="e.g., Freelance, Salary, Groceries"
-            type="text"
-        />
-        <Input
-            value={category.type}
-            onChange={({target}) => handleChange("type",target.value)}
-            isSelect={true}
-            label="Category Type"
-            options={categoryTypeOptions}
-        />
+return (
+  <div className="p-4 sm:p-6">
 
-        <div className="flex justify-end mt-6">
-            <button 
-                type="button"
-                onClick={handleSubmit}
-                disabled={loading}
-                className="px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 transition cursor-pointer"
-            >
-                {loading ? (
-                    <>
-                    <LoaderCircle className="w-4 h-4 animate-spin"/>
-                    {isEditing ? "Updating...":"Adding..."}
-                    </>
-                ) : (
-                    <>
-                    {isEditing ? "Update Category": "Add Category"}
-                    </>
-                )}
-            </button>
-        </div>
-
+    {/* Emoji Picker */}
+    <div className="mb-4 flex justify-center sm:justify-start">
+      <EmojiPickerPopup
+        icon={category.icon}
+        onSelect={(selectedIcon) =>
+          handleChange("icon", selectedIcon)
+        }
+      />
     </div>
-  );
+
+    {/* Category Name */}
+    <div className="mb-4">
+      <Input
+        value={category.name}
+        onChange={({ target }) =>
+          handleChange("name", target.value)
+        }
+        label="Category Name"
+        placeholder="e.g., Freelance, Salary, Groceries"
+        type="text"
+      />
+    </div>
+
+    {/* Category Type */}
+    <div className="mb-6">
+      <Input
+        value={category.type}
+        onChange={({ target }) =>
+          handleChange("type", target.value)
+        }
+        isSelect={true}
+        label="Category Type"
+        options={categoryTypeOptions}
+      />
+    </div>
+
+    {/* Submit Button */}
+    <div className="flex flex-col sm:flex-row sm:justify-end">
+      <button
+        type="button"
+        onClick={handleSubmit}
+        disabled={loading}
+        className="
+          w-full sm:w-auto
+          flex items-center justify-center gap-2
+          px-4 py-2.5
+          text-sm font-medium
+          text-white
+          bg-blue-600
+          rounded-lg
+          hover:bg-blue-700
+          transition
+          disabled:opacity-70
+          disabled:cursor-not-allowed
+        "
+      >
+        {loading ? (
+          <>
+            <LoaderCircle className="w-4 h-4 animate-spin" />
+            {isEditing ? "Updating..." : "Adding..."}
+          </>
+        ) : (
+          <>
+            {isEditing ? "Update Category" : "Add Category"}
+          </>
+        )}
+      </button>
+    </div>
+
+  </div>
+);
+
 };
 
 export default AddCategoryForm;

@@ -1,62 +1,108 @@
-import React, { useState } from 'react'
-import { Eye, EyeOff } from 'lucide-react';
+import React, { useState } from "react";
+import { Eye, EyeOff } from "lucide-react";
 
-const Input = ({label,value,onChange,placeholder,type,isSelect,options}) => {
+const Input = ({
+  label,
+  value,
+  onChange,
+  placeholder,
+  type = "text",
+  isSelect,
+  options = [],
+}) => {
+  const [showPassword, setShowPassword] = useState(false);
 
-    const [showPassword,setShowPassword] = useState(false);
-
-    const toggleShowPassword = () => {
-        setShowPassword(!showPassword);
-    }
+  const toggleShowPassword = () => {
+    setShowPassword((prev) => !prev);
+  };
 
   return (
-    <div className='mb-4'>
-        <label className='text-slate-800  block mb-1 text-[13px]'>{label}</label>
-        <div className='relative'>
+    <div className="mb-4 w-full">
+      {label && (
+        <label className="block mb-1 text-xs sm:text-sm font-medium text-slate-700">
+          {label}
+        </label>
+      )}
 
-            {isSelect ? (
-                <select className='w-full bg-transparent outline-none border border-gray-300 rounded-md py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-blue-500'
-                value={value}
-                onChange={(e) => onChange(e)}
-                >
-                    {options.map((option,idx) => (
-                        <option key={option.value} value={option.value}>{option.label}</option>
-                    ))}
+      <div className="relative">
 
-                </select>
-            ) : (
-                 <input 
-            className='w-full outline-none bg-transparent border border-gray-300 rounded-md py-2 px-3 pr-6 text-gray-700 leading-tight focus:outline-none focus:border-blue-500'
+        {isSelect ? (
+          <select
+            className="
+              w-full
+              bg-white
+              border border-gray-300
+              rounded-lg
+              py-2.5 sm:py-2
+              px-3
+              text-sm sm:text-base
+              text-gray-700
+              focus:outline-none
+              focus:ring-2
+              focus:ring-blue-500
+              transition
+            "
+            value={value}
+            onChange={(e) => onChange(e)}
+          >
+            {options.map((option) => (
+              <option key={option.value} value={option.value}>
+                {option.label}
+              </option>
+            ))}
+          </select>
+        ) : (
+          <input
+            className="
+              w-full
+              bg-white
+              border border-gray-300
+              rounded-lg
+              py-2.5 sm:py-2
+              px-3
+              pr-10
+              text-sm sm:text-base
+              text-gray-700
+              focus:outline-none
+              focus:ring-2
+              focus:ring-blue-500
+              transition
+            "
             value={value}
             placeholder={placeholder}
-            type={type === "password" ? (showPassword ? "text" : "password") : type }
+            type={
+              type === "password"
+                ? showPassword
+                  ? "text"
+                  : "password"
+                : type
+            }
             onChange={(e) => onChange(e)}
-             />
-            )}
+          />
+        )}
 
-            {type === "password" && value.length > 0 && (
-                <span className='absolute right-3 top-1/2 -translate-y-1/2 cursor-pointer'>
-                    {
-                        showPassword ? (
-                            <Eye 
-                            size={20}
-                            className='text-indigo-700'
-                            onClick={toggleShowPassword}
-                            />
-                        )
-                        :
-                       ( <EyeOff
-                        size={20}
-                        className='text-slate-400'
-                        onClick={toggleShowPassword}
-                        />
-                       )}
-                </span>
+        {/* Password Toggle */}
+        {type === "password" && value?.length > 0 && (
+          <button
+            type="button"
+            onClick={toggleShowPassword}
+            className="
+              absolute right-3 top-1/2 -translate-y-1/2
+              flex items-center justify-center
+              text-gray-500 hover:text-indigo-600
+              transition
+            "
+          >
+            {showPassword ? (
+              <Eye size={18} />
+            ) : (
+              <EyeOff size={18} />
             )}
-
-        </div>
+          </button>
+        )}
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default Input
+export default Input;

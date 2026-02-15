@@ -2,10 +2,10 @@ import React, { useContext, useEffect, useRef, useState } from "react";
 import { AppContext } from "../context/AppContext";
 import { useNavigate } from "react-router-dom";
 import { LogOut, Menu, User, X } from "lucide-react";
-import logo from "../assets/13565.jpg";
+import logo from "../assets/logo.png";
 import Sidebar from "./Sidebar";
 
-const Menubar = ({activeMenu}) => {
+const Menubar = ({ activeMenu }) => {
   const [openSideMenu, setOpenSideMenu] = useState(false);
   const [showDropDown, setShowDropDown] = useState(false);
   const dropDownRef = useRef(null);
@@ -24,14 +24,14 @@ const Menubar = ({activeMenu}) => {
       if (dropDownRef.current && !dropDownRef.current.contains(event.target)) {
         setShowDropDown(false);
       }
-    }
+    };
     if (showDropDown) {
-      document.addEventListener("mousedown",handleOutsideClick);  
+      document.addEventListener("mousedown", handleOutsideClick);
     }
     return () => {
-      document.removeEventListener("mousedown",handleOutsideClick);
-    }
-  },[showDropDown]);
+      document.removeEventListener("mousedown", handleOutsideClick);
+    };
+  }, [showDropDown]);
 
   return (
     <div className="flex items-center justify-between gap-5 bg-white border border-gray-200/50 border-b backdrop-blur-[2px] py-4 px-4 sm:px-7 sticky top-0 z-30">
@@ -60,7 +60,7 @@ const Menubar = ({activeMenu}) => {
       <div ref={dropDownRef} className="relative">
         <button
           onClick={() => setShowDropDown(!showDropDown)}
-          className="flex items-center justify-center w-10 h-10 bg-gray-100 hover:bg-gray-200 rounded-full transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-purple-800 focus:ring-offset-2"
+          className="flex items-center justify-center cursor-pointer w-10  h-10 bg-gray-100 hover:bg-gray-200 rounded-full transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-purple-800 focus:ring-offset-2"
         >
           <User className="text-purple-500" />
         </button>
@@ -104,7 +104,6 @@ const Menubar = ({activeMenu}) => {
           <Sidebar activeMenu={activeMenu} />
         </div>
       )}
-
     </div>
   );
 };

@@ -29,7 +29,6 @@ const Income = () => {
     try {
       const response = await axiosConfig.get(API_ENDPOINTS.GET_ALL_INCOMES);
       if (response.status === 200) {
-        console.log("Income List: ", response.data);
         setIncomeData(response.data);
       }
     } catch (error) {
@@ -50,7 +49,6 @@ const Income = () => {
         API_ENDPOINTS.CATEGORY_BY_TYPE("income"),
       );
       if (response.status === 200) {
-        console.log("Income categories: ", response.data);
         setCategories(response.data);
       }
     } catch (error) {
@@ -105,7 +103,6 @@ const Income = () => {
         icon,
         categoryId,
       });
-      console.log("Saving income:", income);
       if (response.status === 201) {
         setOpenAddIncomeModal(false);
         toast.success("Income added successfully!");
@@ -144,6 +141,7 @@ const Income = () => {
       const url = window.URL.createObjectURL(new Blob([response.data]));
       const link = document.createElement("a");
       link.herf = url;
+      link.click();
       link.setAttribute("download", filename);
       document.body.appendChild(link);
       window.URL.revokeObjectURL(url);
@@ -151,7 +149,7 @@ const Income = () => {
     } catch (error) {
       console.error("Error downloading income details:", error);
       toast.error(error.response?.data?.message || "Failed to download income");
-    } 
+    }
   };
 
   const handleEmailIncomeDetails = async () => {

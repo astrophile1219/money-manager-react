@@ -8,9 +8,9 @@ import { useNavigate } from "react-router-dom";
 import axiosConfig from "../util/axiosConfig";
 import { API_ENDPOINTS } from "../util/apiEndpoints";
 import toast from "react-hot-toast";
-import RecentTransactions from "../components/RecentTransactions ";
-import FinanceOverview from "../components/FinanceOverview ";
-import Transactions from "../components/Transactions ";
+import RecentTransactions from "../components/RecentTransactions";
+import FinanceOverview from "../components/FinanceOverview";
+import Transactions from "../components/Transactions";
 
 const Home = () => {
   useUser();
@@ -85,7 +85,7 @@ const Home = () => {
 
           {/* Expense transactions */}
           <Transactions
-            transactions={dashboardData?.recent5Expenses || []}
+            transactions={dashboardData?.recent5Expense || []}
             onMore={() => navigate("/expense")}
             type="expense"
             title="Recent Expenses"

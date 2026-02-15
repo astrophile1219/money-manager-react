@@ -3,7 +3,7 @@ import TransactionInfoCard from "./TransactionInfoCard";
 import moment from "moment";
 import { useState } from "react";
 
-const IncomeList = ({ transactions, onDelete, onDownload, onEmail }) => {
+const ExpenseList = ({ transactions, onDelete, onDownload, onEmail }) => {
   const [loading, setLoading] = useState(false);
 
   const handleEmail = async () => {
@@ -30,7 +30,7 @@ const IncomeList = ({ transactions, onDelete, onDownload, onEmail }) => {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <h5 className="text-base sm:text-lg font-semibold">
-          Income Sources
+          Expense Sources
         </h5>
 
         <div className="flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
@@ -100,15 +100,15 @@ const IncomeList = ({ transactions, onDelete, onDownload, onEmail }) => {
 
       {/* Transactions Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
-        {transactions?.map((income) => (
+        {transactions?.map((expense) => (
           <TransactionInfoCard
-            key={income.id}
-            title={income.name}
-            icon={income.icon}
-            date={moment(income.date).format("Do MM YYYY")}
-            amount={income.amount}
-            type="income"
-            onDelete={() => onDelete(income.id)}
+            key={expense.id}
+            title={expense.name}
+            icon={expense.icon}
+            date={moment(expense.date).format("Do MM YYYY")}
+            amount={expense.amount}
+            type="expense"
+            onDelete={() => onDelete(expense.id)}
           />
         ))}
       </div>
@@ -116,4 +116,4 @@ const IncomeList = ({ transactions, onDelete, onDownload, onEmail }) => {
   );
 };
 
-export default IncomeList;
+export default ExpenseList;

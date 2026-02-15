@@ -43,7 +43,6 @@ const SignUp = () => {
       return;
     }
     setError("");
-    console.log(fullName, email, password);
 
     // signup api call
     try {

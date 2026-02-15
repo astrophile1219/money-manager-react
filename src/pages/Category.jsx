@@ -24,7 +24,6 @@ const Category = () => {
       const response = await axiosConfig.get(API_ENDPOINTS.GET_ALL_CATEGORIES);
 
       if (response.status === 200) {
-        console.log("categories", response.data);
         setCategoryData(response.data);
       }
     } catch (error) {
@@ -40,7 +39,6 @@ const Category = () => {
   }, []);
 
   const handleAddCategory = async (category) => {
-    // console.log("Category added successfully!",category);
     const { name, type, icon } = category;
     if (!name.trim()) {
       toast.error("Category name is required");
@@ -75,7 +73,6 @@ const Category = () => {
   };
 
   const handleEditCategory = (categoryToEdit) => {
-    // console.log("Editing the category.",categoryToEdit);
     setSelectedCategory(categoryToEdit);
     setOpenEditCategoryModal(true);
   };
@@ -112,29 +109,41 @@ const Category = () => {
       );
     }
   };
-
   return (
     <Dashboard activeMenu="Category">
-      <div className="my-5 mx-auto">
-        {/* Add button to add category */}
-        <div className="flex items-center justify-between mb-5 ">
-          <h2 className="text-2xl font-semibold">All Categories</h2>
+      <div className="my-5 px-4 sm:px-6 max-w-6xl mx-auto">
+        {/* Header */}
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
+          <h2 className="text-xl sm:text-2xl font-semibold">All Categories</h2>
+
           <button
             onClick={() => setOpenAddCategoryModal(true)}
-            className="flex items-center gap-1 px-4 py-2 bg-green-200 cursor-pointer text-green-800 rounded-lg"
+            className="
+            flex items-center justify-center gap-2
+            w-full sm:w-auto
+            px-4 py-2
+            bg-green-200
+            hover:bg-green-300
+            text-green-800
+            rounded-lg
+            transition-colors
+            text-sm sm:text-base
+          "
           >
-            <Plus size={15} />
+            <Plus size={16} />
             Add Category
           </button>
         </div>
 
-        {/* category list */}
-        <CategoryList
-          categories={categoryData}
-          onEditCategory={handleEditCategory}
-        />
+        {/* Category List */}
+        <div className="overflow-x-auto">
+          <CategoryList
+            categories={categoryData}
+            onEditCategory={handleEditCategory}
+          />
+        </div>
 
-        {/* adding category model */}
+        {/* Add Category Modal */}
         <Modal
           isOpen={openAddCategoryModal}
           onClose={() => setOpenAddCategoryModal(false)}
@@ -142,7 +151,8 @@ const Category = () => {
         >
           <AddCategoryForm onAddCategory={handleAddCategory} />
         </Modal>
-        {/* updating category model */}
+
+        {/* Edit Category Modal */}
         <Modal
           onClose={() => {
             setOpenEditCategoryModal(false);
