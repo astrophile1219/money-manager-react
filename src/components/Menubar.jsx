@@ -1,8 +1,8 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { AppContext } from "../context/AppContext";
 import { useNavigate } from "react-router-dom";
-import { LogOut, Menu, User, X } from "lucide-react";
-import logo from "../assets/logo.png";
+import { LogOut, Menu, User, X, Wallet } from "lucide-react";
+// import logo from "../assets/logo.png";
 import Sidebar from "./Sidebar";
 
 const Menubar = ({ activeMenu }) => {
@@ -49,7 +49,7 @@ const Menubar = ({ activeMenu }) => {
         </button>
 
         <div className="flex items-center gap-2">
-          <img src={logo} alt="" className="h-10 w-10" />
+          <Wallet  className="text-purple-600" size={28} />
           <span className="text-lg text-black truncate font-medium">
             Money Manager
           </span>

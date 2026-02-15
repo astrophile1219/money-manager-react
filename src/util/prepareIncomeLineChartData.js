@@ -39,7 +39,6 @@ export const prepareIncomeLineChartData = (transactions = []) => {
   const result = Object.values(incomeByDate)
     .sort((a, b) => a.sortKey - b.sortKey);
 
-  console.log("Chart Data:", result); // DEBUG: Check your data
   
   return result;
 };

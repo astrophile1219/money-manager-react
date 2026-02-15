@@ -37,7 +37,7 @@ const IncomeOverview = ({ transactions = [], onAddIncome }) => {
             rounded-lg
             transition-colors
             font-medium
-            text-sm
+            text-sm cursor-pointer
           "
         >
           <Plus size={16} /> Add Income

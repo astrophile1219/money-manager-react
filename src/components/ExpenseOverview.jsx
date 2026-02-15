@@ -35,7 +35,7 @@ const ExpenseOverview = ({ transactions = [], onAddExpense }) => {
             bg-red-50 hover:bg-red-100
             text-red-700
             rounded-lg
-            transition-colors
+            transition-colors cursor-pointer
             font-medium
             text-sm
           "

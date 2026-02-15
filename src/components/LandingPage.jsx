@@ -77,13 +77,13 @@ const LandingPage = () => {
               <div className="flex flex-col gap-2 pt-2">
                 <button
                   onClick={openLogin}
-                  className="text-gray-700 hover:text-purple-600 font-medium px-4 py-2 border border-gray-200 rounded-lg"
+                  className="text-gray-700 cursor-pointer hover:text-purple-600 font-medium px-4 py-2 border border-gray-200 rounded-lg"
                 >
                   Login
                 </button>
                 <button
                   onClick={openSignup}
-                  className="bg-purple-600 hover:bg-purple-700 text-white font-semibold px-6 py-2.5 rounded-lg"
+                  className="bg-purple-600 cursor-pointer hover:bg-purple-700 text-white font-semibold px-6 py-2.5 rounded-lg"
                 >
                   Get Started
                 </button>
@@ -109,7 +109,7 @@ const LandingPage = () => {
           <div className="flex items-center justify-center gap-4 flex-wrap">
             <button
               onClick={openSignup}
-              className="bg-purple-600 hover:bg-purple-700 text-white font-semibold px-8 py-4 rounded-xl transition-all text-base md:text-lg shadow-lg shadow-purple-200 hover:shadow-xl hover:shadow-purple-300 hover:-translate-y-0.5"
+              className="bg-purple-600 hover:bg-purple-700 text-white font-semibold px-8 py-4 rounded-xl transition-all text-base md:text-lg shadow-lg shadow-purple-200 hover:shadow-xl cursor-pointer hover:shadow-purple-300 hover:-translate-y-0.5"
             >
               Start Tracking for Free
             </button>

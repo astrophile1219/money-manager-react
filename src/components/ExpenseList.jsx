@@ -50,7 +50,7 @@ const ExpenseList = ({ transactions, onDelete, onDownload, onEmail }) => {
               hover:from-gray-50 hover:to-gray-100
               hover:text-gray-900
               active:scale-95
-              transition-all duration-200 ease-out
+              transition-all duration-200 ease-out cursor-pointer
             "
             onClick={handleEmail}
           >
@@ -78,7 +78,7 @@ const ExpenseList = ({ transactions, onDelete, onDownload, onEmail }) => {
               shadow-sm
               hover:shadow-md
               hover:from-gray-50 hover:to-gray-100
-              hover:text-gray-900
+              hover:text-gray-900 cursor-pointer
               active:scale-95
               transition-all duration-200 ease-out
             "
