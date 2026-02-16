@@ -1,7 +1,9 @@
 import React from "react";
 import { ArrowRight, Menu, X, Wallet } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import demo from "../assets/demo.png";
+// import demo from "../assets/demo.png";
+import MMdemo from "../assets/MMdemo.png";
+
 
 const LandingPage = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
@@ -41,13 +43,13 @@ const LandingPage = () => {
             <div className="hidden md:flex items-center gap-4">
               <button
                 onClick={openLogin}
-                className="text-gray-700 hover:text-purple-600 font-medium px-4 py-2 transition-colors"
+                className="text-gray-700 hover:text-purple-600 cursor-pointer font-medium px-4 py-2 transition-colors"
               >
                 Login
               </button>
               <button
                 onClick={openSignup}
-                className="bg-purple-600 hover:bg-purple-700 text-white font-semibold px-6 py-2.5 rounded-lg transition-all hover:shadow-lg hover:shadow-purple-200"
+                className="bg-purple-600 hover:bg-purple-700 text-white cursor-pointer font-semibold px-6 py-2.5 rounded-lg transition-all hover:shadow-lg hover:shadow-purple-200"
               >
                 Get Started
               </button>
@@ -124,7 +126,7 @@ const LandingPage = () => {
         {/* Demo Image */}
         <div className="mt-16 flex justify-center">
           <img
-            src={demo}
+            src={MMdemo}
             alt="App Preview"
             className="rounded-2xl shadow-2xl max-w-full md:max-w-4xl"
           />
