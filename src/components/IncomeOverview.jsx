@@ -5,21 +5,21 @@ import { Plus } from "lucide-react";
 
 const IncomeOverview = ({ transactions = [], onAddIncome }) => {
   const [chartData, setChartData] = useState([]);
+  const [displayMonth, setDisplayMonth] = useState("");
 
   useEffect(() => {
     const result = prepareIncomeLineChartData(transactions);
-    setChartData(result);
+    setChartData(result.data);
+    setDisplayMonth(result.monthLabel);
   }, [transactions]);
 
   return (
     <div className="bg-white rounded-xl shadow border border-gray-200 p-4 sm:p-6">
-      
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
-        
         <div>
           <h5 className="text-base sm:text-lg font-semibold text-gray-800">
-            Income Overview
+            Income Overview {displayMonth && `(${displayMonth})`}
           </h5>
           <p className="text-xs sm:text-sm text-gray-500 mt-1">
             Track your earnings over time and analyze your income trends.

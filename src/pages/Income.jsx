@@ -23,7 +23,7 @@ const Income = () => {
   });
 
   // Fetch Income details from the api
-  const fetchIncomeDtails = async () => {
+  const fetchIncomeDetails = async () => {
     if (loading) return;
     setLoading(true);
     try {
@@ -31,6 +31,7 @@ const Income = () => {
       if (response.status === 200) {
         setIncomeData(response.data);
       }
+      //  console.log("Income API Response:", response.data);
     } catch (error) {
       console.error("Failed to fetch the income details: ", error);
       toast.error(
@@ -106,7 +107,7 @@ const Income = () => {
       if (response.status === 201) {
         setOpenAddIncomeModal(false);
         toast.success("Income added successfully!");
-        fetchIncomeDtails();
+        fetchIncomeDetails();
         fetchIncomeCategories();
       }
     } catch (error) {
@@ -124,33 +125,41 @@ const Income = () => {
       await axiosConfig.delete(API_ENDPOINTS.DELETE_INCOME(id));
       setOpenDeleteAlert({ show: false, data: null });
       toast.success("Income deleted successfully!");
-      fetchIncomeDtails();
+      fetchIncomeDetails();
     } catch (error) {
       console.log("Error deleting income", error);
       toast.error(error.response?.data?.message || "Failed to delete income.");
     }
   };
 
-  const handleDownloadIncomeDetails = async () => {
-    try {
-      const response = await axiosConfig.get(
-        API_ENDPOINTS.INCOME_EXCEL_DOWNLOAD,
-        { responseType: "blob" },
-      );
-      let filename = "income_details.xlsx";
-      const url = window.URL.createObjectURL(new Blob([response.data]));
-      const link = document.createElement("a");
-      link.herf = url;
-      link.click();
-      link.setAttribute("download", filename);
-      document.body.appendChild(link);
-      window.URL.revokeObjectURL(url);
-      toast.success("Download Income details successfully");
-    } catch (error) {
-      console.error("Error downloading income details:", error);
-      toast.error(error.response?.data?.message || "Failed to download income");
-    }
-  };
+const handleDownloadIncomeDetails = async () => {
+  try {
+    const response = await axiosConfig.get(
+      API_ENDPOINTS.INCOME_EXCEL_DOWNLOAD,
+      { responseType: "blob" }
+    );
+
+    const filename = "income_details.xlsx";
+    const url = window.URL.createObjectURL(new Blob([response.data]));
+
+    const link = document.createElement("a");
+    link.href = url;
+    link.setAttribute("download", filename);
+    document.body.appendChild(link);
+
+    link.click();
+
+    document.body.removeChild(link);
+    window.URL.revokeObjectURL(url);
+
+    toast.success("Download Income details successfully");
+  } catch (error) {
+    console.error("Error downloading income details:", error);
+    toast.error(
+      error.response?.data?.message || "Failed to download income"
+    );
+  }
+};
 
   const handleEmailIncomeDetails = async () => {
     try {
@@ -165,7 +174,7 @@ const Income = () => {
   };
 
   useEffect(() => {
-    fetchIncomeDtails();
+    fetchIncomeDetails();
     fetchIncomeCategories();
   }, []);
 

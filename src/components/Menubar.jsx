@@ -16,7 +16,7 @@ const Menubar = ({ activeMenu }) => {
     localStorage.clear();
     setShowDropDown(false);
     clearUser();
-    navigate("/login");
+    navigate("/landing");
   };
 
   useEffect(() => {

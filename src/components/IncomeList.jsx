@@ -4,37 +4,34 @@ import moment from "moment";
 import { useState } from "react";
 
 const IncomeList = ({ transactions, onDelete, onDownload, onEmail }) => {
-  const [loading, setLoading] = useState(false);
+  const [emailLoading, setEmailLoading] = useState(false);
+  const [downloadLoading, setDownloadLoading] = useState(false);
 
   const handleEmail = async () => {
-    setLoading(true);
+    setEmailLoading(true);
     try {
       await onEmail();
     } finally {
-      setLoading(false);
+      setEmailLoading(false);
     }
   };
 
   const handleDownload = async () => {
-    setLoading(true);
+    setDownloadLoading(true);
     try {
       await onDownload();
     } finally {
-      setLoading(false);
+      setDownloadLoading(false);
     }
   };
 
   return (
     <div className="bg-white border border-gray-200 rounded-xl p-4 sm:p-5 shadow-sm hover:shadow-md transition-shadow duration-200">
-      
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-        <h5 className="text-base sm:text-lg font-semibold">
-          Income Sources
-        </h5>
+        <h5 className="text-base sm:text-lg font-semibold">Income Sources</h5>
 
         <div className="flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
-          
           <button
             className="
               flex items-center justify-center gap-2
@@ -54,9 +51,10 @@ const IncomeList = ({ transactions, onDelete, onDownload, onEmail }) => {
             "
             onClick={handleEmail}
           >
-            {loading ? (
+            {emailLoading ? (
               <>
-                <LoaderCircle className="w-4 h-4 animate-spin" /> Emailing...
+                <LoaderCircle className="w-4 h-4 animate-spin" />
+                Emailing...
               </>
             ) : (
               <>
@@ -82,10 +80,10 @@ const IncomeList = ({ transactions, onDelete, onDownload, onEmail }) => {
               active:scale-95
               transition-all duration-200 ease-out
             "
-            disabled={loading}
+            disabled={downloadLoading}
             onClick={handleDownload}
           >
-            {loading ? (
+            {downloadLoading ? (
               <>
                 <LoaderCircle className="w-4 h-4 animate-spin" /> Downloading...
               </>

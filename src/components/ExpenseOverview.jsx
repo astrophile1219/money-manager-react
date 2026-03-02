@@ -5,10 +5,12 @@ import { Plus } from "lucide-react";
 
 const ExpenseOverview = ({ transactions = [], onAddExpense }) => {
   const [chartData, setChartData] = useState([]);
+  const [displayMonth, setDisplayMonth] = useState("");
 
   useEffect(() => {
     const result = prepareIncomeLineChartData(transactions);
-    setChartData(result);
+    setChartData(result.data);
+    setDisplayMonth(result.monthLabel);
   }, [transactions]);
 
   return (
@@ -19,7 +21,7 @@ const ExpenseOverview = ({ transactions = [], onAddExpense }) => {
         
         <div>
           <h5 className="text-base sm:text-lg font-semibold text-gray-800">
-            Expense Overview
+            Expense Overview {displayMonth && `(${displayMonth})`}
           </h5>
           <p className="text-xs sm:text-sm text-gray-500 mt-1">
             Track your spending over time and analyze your expense trends.

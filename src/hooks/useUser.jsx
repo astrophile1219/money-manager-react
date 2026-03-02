@@ -22,7 +22,7 @@ export const useUser = () => {
             setUser(response.data)
         }
       } catch (error) {
-        console.error("Failed to fetch user info", error);
+        // console.error("Failed to fetch user info", error);
         if (isMounted) {
             clearUser();
             navigate("/login");

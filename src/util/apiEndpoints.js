@@ -1,6 +1,5 @@
-export const BASE_URL = "https://money-manager-v2-0-nt88.onrender.com/api/v2.0";
-// export const BASE_URL = "https://money-manager-v2-0-3.onrender.com/api/v2.0";
-// export const BASE_URL = "http://localhost:9090/api/v2.0";
+// export const BASE_URL = "https://money-manager-v2-0-nt88.onrender.com/api/v2.0";
+export const BASE_URL = "http://localhost:9090/api/v2.0";
 const CLOUDINARY_CLOUD_NAME = "dn4exhu3m";
 export const API_ENDPOINTS = {
   LOGIN: "/login",
@@ -10,7 +9,7 @@ export const API_ENDPOINTS = {
   ADD_CATEGORY:"/categories",
   UPDATE_CATEGORY:(categoryId) => `/categories/${categoryId}`,
 
-  // incomes api points
+  // incomes api endpoints
   GET_ALL_INCOMES:"/incomes",
   CATEGORY_BY_TYPE: (type) => `/categories/${type}`,
   ADD_INCOME:"/incomes",
@@ -18,7 +17,7 @@ export const API_ENDPOINTS = {
   INCOME_EXCEL_DOWNLOAD : "/excel/download/income",
   EMAIL_INCOME : "/email/income-excel",
 
-  // expense api points
+  // expense api endpoints
   GET_ALL_EXPENSES:"/expenses",
   CATEGORY_BY_TYPE: (type) => `/categories/${type}`,
   ADD_EXPENSE:"/expenses",

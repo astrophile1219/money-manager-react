@@ -31,7 +31,7 @@ const CustomLineChart = ({ data = [] }) => {
         className="flex items-center justify-center text-sm text-gray-400"
         style={{ width: '100%', height: '400px' }}
       >
-        No income data for this month
+        No income records available
       </div>
     );
   }
