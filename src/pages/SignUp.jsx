@@ -65,6 +65,7 @@ const SignUp = () => {
     } catch (err) {
       console.error("Something went wrong!", err);
       setError(err.message);
+      setIsLoading(false);
     }
   };
 
